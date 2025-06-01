@@ -1,50 +1,50 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import "tailwindcss";
+
+.fill-google-logo-blue { fill: #4285F4; }
+.fill-google-logo-green { fill: #34A853; }
+.fill-google-logo-yellow { fill: #FBBC05; }
+.fill-google-logo-red { fill: #EA4335; }
+
+
+@keyframes typing-desktop {
+    from {
+        width: 0;
+    }
+    to {
+        width: 15ch;
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes typing-mobile {
+    from {
+        width: 0;
+    }
+    to {
+        width: 13ch;
+    }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+.typing-animation-desktop {
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing-desktop 2s steps(20, end) forwards;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
+.typing-animation-mobile {
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing-mobile 2s steps(20, end) forwards;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.imgDark {
-  display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-
-  .imgLight {
-    display: none;
-  }
-  .imgDark {
-    display: unset;
-  }
+html, body, #__next {
+    overflow-x: hidden;
+    width: 100%;
 }

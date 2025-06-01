@@ -1,0 +1,20 @@
+import NextVideo from "next-video";
+import auth_girl from './../../videos/fb_smile_girl.mp4.json'
+import BackgroundVideo from 'next-video/background-video';
+
+// eslint-disable-next-line react/display-name
+export default function() {
+
+    return <div className="overflow-auto">
+
+        <BackgroundVideo
+            disableTracking
+            maxResolution="720p"
+            style={{
+                aspectRatio: 'auto',
+                width: '100%',
+                height: '100%',
+                objectFit: 'fill',
+            }} controls={false} src={auth_girl} autoPlay></BackgroundVideo>
+    </div>
+}
