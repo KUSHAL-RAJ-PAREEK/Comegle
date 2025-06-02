@@ -9,9 +9,11 @@
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
     "turbo": "^2.5.3",
-    "typescript": "5.8.2"
+    "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">=18"
@@ -20,5 +22,11 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@react-email/components": "^0.0.41",
+    "@repo/db": "^1.0.0",
+    "socket.io-client": "^4.8.1",
+    "uuid": "^11.1.0"
+  }
 }

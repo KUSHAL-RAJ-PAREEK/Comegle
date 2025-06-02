@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack --port 3000 & next dev & npx next-video sync -w",
+    "dev": "concurrently \"next dev --port 3000\" \"npx next-video sync -w\" \"npx tsx ./server.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint --max-warnings 0",
@@ -24,7 +24,10 @@
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "resend": "^4.5.1",
-    "tailwind-merge": "^3.3.0"
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "tailwind-merge": "^3.3.0",
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
@@ -37,6 +40,7 @@
     "postcss": "^8.4.31",
     "postcss-import": "^16.1.0",
     "tailwindcss": "^4.1.8",
-    "typescript": "5.8.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }

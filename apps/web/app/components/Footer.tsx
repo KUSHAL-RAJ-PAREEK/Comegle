@@ -45,7 +45,7 @@ export default function Footer() {
                     )}
                 </div>
 
-                <div className="flex space-x-6 my-8">
+                <div className="flex space-x-6 mt-8">
                     <a
                         href="https://www.linkedin.com/in/kushal-raj-pareek/"
                         target="_blank"
@@ -63,6 +63,9 @@ export default function Footer() {
                         <FaGithub />
                     </a>
                 </div>
+                <p className="text-center text-sm text-gray-500 my-5">
+                    Made with <span className="text-red-500">❤️</span> in Jaipur
+                </p>
             </div>
 
 
