@@ -8,7 +8,7 @@ import {JWT} from "next-auth/jwt";
 import {User} from "next-auth";
 import {Session} from "node:inspector";
 
-// @ts-ignore
+
 // @ts-ignore
 export const authOptions = {
 
