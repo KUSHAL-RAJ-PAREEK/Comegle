@@ -1,9 +1,5 @@
 import GoogleProvider from "next-auth/providers/google";
 import {saveUser} from "./actions/saveUser";
-import {sendVerificationRequest} from "./resend/sendVerificationRequest";
-// @ts-ignore
-import db from "@repo/db/client";
-import {PrismaAdapter} from "@next-auth/prisma-adapter";
 import {JWT} from "next-auth/jwt";
 import {User} from "next-auth";
 import {Session} from "node:inspector";

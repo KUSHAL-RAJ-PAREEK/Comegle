@@ -26,6 +26,7 @@
   "dependencies": {
     "@react-email/components": "^0.0.41",
     "@repo/db": "^1.0.0",
+    "ioredis": "^5.6.1",
     "socket.io-client": "^4.8.1",
     "uuid": "^11.1.0"
   }

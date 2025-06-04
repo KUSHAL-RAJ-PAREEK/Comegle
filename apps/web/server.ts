@@ -21,14 +21,21 @@ app.prepare().then(() => {
         io.on('connection',(socket)=>{
             console.log('server is connected')
             socket?.on('join-room',(roomId,id) =>{
+                const room = io.sockets.adapter.rooms.get(roomId);
+                const numUsers = room ? room.size : 0;
+                if (numUsers >= 2) {
+                    console.log(`❌ Room ${roomId} is full`);
+                    socket.emit("room-full");
+                    return;
+                }
                 console.log(`a new User ${id} joined room ${roomId}`)
                 socket.join(roomId)
                 socket.broadcast.to(roomId).emit(`user-connected`,id)
             })
 
             socket.on(`user-leave`,(userId,roomId)=>{
-                socket.join(roomId)
                 socket.broadcast.to(roomId).emit(`user-leave`,userId)
+                socket.leave(roomId);
             })
         })
     } else {
