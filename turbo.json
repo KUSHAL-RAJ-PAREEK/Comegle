@@ -12,6 +12,11 @@
       "env": ["SOME_OTHER_ENV_VAR"],
       "outputs": [".next/**", "!.next/cache/**"]
   },
+    "pipeline": {
+      "build": {
+        "dependsOn": ["^generate"]
+      }
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },

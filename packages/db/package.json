@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "generate": "prisma generate",
     "migrate": "dotenv -e .env.local npx prisma migrate dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
