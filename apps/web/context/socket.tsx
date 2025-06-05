@@ -20,7 +20,7 @@ export const SocketProvider = (props:any) => {
     const status = session.status
     useEffect(() => {
         if(status === 'authenticated'){
-            connection = io(    `https://${process.env.HOSTNAME}:8000`, {
+            connection = io(    `https://comegle-web-nnkb.vercel.app:8000`, {
                 transports: ["websocket"],
             });
 

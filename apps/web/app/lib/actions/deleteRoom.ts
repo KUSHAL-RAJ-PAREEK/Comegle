@@ -7,7 +7,7 @@ export default async  function (domain :string,roomId:string){
 
     const poolId = await getPoolId(domain)
 
-    await fetch(`https://${process.env.HOSTNAME}:3000/api/room`,
+    await fetch(`https://comegle-web-nnkb.vercel.app:3000/api/room`,
         {
             method: "DELETE",
             headers:{
