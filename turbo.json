@@ -12,12 +12,6 @@
       "env": ["SOME_OTHER_ENV_VAR"],
       "outputs": [".next/**", "!.next/cache/**"]
   },
-    "globalEnv": [
-      "GITHUB_TOKEN"
-    ],
-    "globalDependencies": [
-      "tsconfig.json"
-    ],
     "lint": {
       "dependsOn": ["^lint"]
     },
