@@ -41,7 +41,6 @@
 
 1. **Sign In**  
    - Users log in via OAuth using Google through **NextAuth.js**.  
-   - The app validates that the user email ends with a college domain.
 
 2. **Room Allocation**  
    - A Redis-backed queue system allocates rooms by grouping users from the same college.  
