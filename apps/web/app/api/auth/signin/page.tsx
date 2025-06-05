@@ -11,10 +11,11 @@ import About from "../../../components/About";
 export default function Home() {
     const session = useSession();
     const router = useRouter();
-    sessionStorage.setItem("hasReloaded", "no");
 
     const status = session.status
     useEffect(() => {
+        sessionStorage.setItem("hasReloaded", "no");
+
         if (status == "authenticated") {
             router.replace("/")
         }
