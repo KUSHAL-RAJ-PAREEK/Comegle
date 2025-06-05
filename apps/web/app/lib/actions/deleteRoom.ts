@@ -6,7 +6,7 @@ export default async function (domain: string, roomId: string) {
 
     const poolId = await getPoolId(domain)
 
-    await fetch("http://10.10.103.62:3000/api/room",
+    await fetch("/api/room",
         {
             method: "DELETE",
             headers: {
