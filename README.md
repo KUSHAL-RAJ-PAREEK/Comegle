@@ -1,4 +1,4 @@
-# 🎓 Comegle — College-Based Omegle Clone
+# 🎓 Comegle — College-Based Omegle
 
 **Comegle** is a real-time, college-exclusive video chat platform inspired by Omegle. It connects students from the **same college** (verified by email domain) for spontaneous and anonymous one-on-one video chats.
 
