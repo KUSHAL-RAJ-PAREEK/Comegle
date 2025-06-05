@@ -1,84 +1,64 @@
-# Turborepo starter
+# 🎓 Comegle — College-Based Omegle Clone
 
-This Turborepo starter is maintained by the Turborepo core team.
+**Comegle** is a real-time, college-exclusive video chat platform inspired by Omegle. It connects students from the **same college** (verified by email domain) for spontaneous and anonymous one-on-one video chats.
 
-## Using this example
+---
 
-Run the following command:
+## ✨ Features
 
-```sh
-npx create-turbo@latest
-```
+- 🎥 **Video Chat** – Peer-to-peer one-on-one video communication  
+- 💬 **Text Messaging** – Chat alongside video in real time  
+- 🔄 **Next** – Instantly skip to another random user from your college  
+- 🛑 **Stop** – Leave the current chat session any time  
+- 🔐 **College Email Sign-In** – Only verified college domain emails can access  
+- ⚡ **Smart Room Allocation** – Efficient matchmaking using Redis  
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+## 🛠 Tech Stack
 
-### Apps and Packages
+| Layer                | Technologies Used                                                               |
+|---------------------|----------------------------------------------------------------------------------|
+| **Monorepo**         | [Turborepo](https://turbo.build/repo)                                           |
+| **Frontend**         | [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/)        |
+| **Authentication**   | [NextAuth.js](https://next-auth.js.org/) with college domain email verification |
+| **Database**         | [PostgreSQL](https://www.postgresql.org/), [Prisma ORM](https://www.prisma.io/)|
+| **Video Streaming**  | [WebRTC](https://webrtc.org/), [PeerJS](https://peerjs.com/)                    |
+| **Real-Time Socket** | [Socket.IO](https://socket.io/), [Redis Pub/Sub](https://redis.io/)             |
+| **Matchmaking**      | Custom Redis-based room allocation algorithm                                     |
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+---
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## 🏫 College-Only Access
 
-### Utilities
+- Users **must sign in with their official college email address** (e.g., `student@abc.edu`).
+- Email domains are verified to match against a pre-approved list.
+- Users are only matched with other students from the **same college domain**.
 
-This Turborepo has some additional tools already setup for you:
+---
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## ⚙️ How It Works
 
-### Build
+1. **Sign In**  
+   - Users log in via OAuth using Google through **NextAuth.js**.  
+   - The app validates that the user email ends with a college domain.
 
-To build all apps and packages, run the following command:
+2. **Room Allocation**  
+   - A Redis-backed queue system allocates rooms by grouping users from the same college.  
+   - The matching algorithm ensures quick and relevant pairings.
 
-```
-cd my-turborepo
-pnpm build
-```
+3. **Video & Chat Communication**  
+   - **WebRTC** + **PeerJS** are used for peer-to-peer video calling.  
+   - **Socket.IO** handles signaling, events (join, next, stop), and chat messages.
 
-### Develop
+---
 
-To develop all apps and packages, run the following command:
+## 📁 Project Structure
 
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+```bash
+/apps
+  ├── web         # Next.js frontend app
+  |-              # server.ts socket
+  └── api         # API routes
+/packages
+  └── db          # Prisma schema, database access
