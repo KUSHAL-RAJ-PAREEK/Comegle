@@ -9,11 +9,6 @@ import {Session} from "node:inspector";
 export const authOptions = {
 
     providers: [
-        // {
-        //     id: 'resend',
-        //     type: 'email',
-        //     sendVerificationRequest
-        // },
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID || "",
             clientSecret: process.env.GOOGLE_CLIENT_SECRET || ""
