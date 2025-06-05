@@ -27,7 +27,8 @@
           "MUX_TOKEN_SECRET",
           "REDIS"
         ]
-      },
+      }
+    },
     "check-types": {
       "dependsOn": ["^check-types"]
     },
