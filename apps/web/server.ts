@@ -13,7 +13,7 @@ const pub = new Redis(process.env["REDIS"]);
 const sub = new Redis(process.env["REDIS"]);
 
 const dev = process.env.NODE_ENV !== "production";
-const hostname = "10.10.103.62";
+const hostname = process.env.HOST";
 const port = 8000;
 
 const app = next({dev, hostname, port});
