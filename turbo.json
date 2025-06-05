@@ -15,18 +15,19 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
-  "tasks": {
-    "build": {
-      "env": ["RESEND_API_KEY",
-        "GOOGLE_CLIENT_ID",
-        "GOOGLE_CLIENT_SECRET",
-        "NEXTAUTH_SECRET",
-        "DATABASE_URL",
-        "MUX_TOKEN_ID",
-        "MUX_TOKEN_SECRET",
-        "REDIS"]
-    }
-  },
+    "pipeline": {
+      "build": {
+        "env": [
+          "RESEND_API_KEY",
+          "GOOGLE_CLIENT_ID",
+          "GOOGLE_CLIENT_SECRET",
+          "NEXTAUTH_SECRET",
+          "DATABASE_URL",
+          "MUX_TOKEN_ID",
+          "MUX_TOKEN_SECRET",
+          "REDIS"
+        ]
+      },
     "check-types": {
       "dependsOn": ["^check-types"]
     },
