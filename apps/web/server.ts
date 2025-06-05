@@ -24,9 +24,11 @@ app.prepare().then(() => {
     // @ts-ignore
     if (!globalThis.io) {
         const io = new Server(httpServer,{
-            cors:{
-                allowedHeaders:['*'],
-                origin: '*'
+            cors: {
+                origin: '*',
+                methods: ['GET', 'POST'],
+                allowedHeaders: ['*'],
+                credentials: false
             }
         });
         // @ts-ignore
