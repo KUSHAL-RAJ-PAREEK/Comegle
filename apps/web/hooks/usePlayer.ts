@@ -52,8 +52,7 @@ const usePlayer = (myId: string | undefined, roomId: any, peer: any) => {
             }
             return filteredPlayers;
         });
-
-        clearMessages()
+       clearMessages()
         await fetchRoom(domain);
         await deleteRoom(domain,roomId)
 
@@ -74,7 +73,7 @@ const usePlayer = (myId: string | undefined, roomId: any, peer: any) => {
             return filteredPlayers;
         });
         await deleteRoom(domain,roomId)
-
+        // @ts-ignore
         clearMessages()
     }, [socket, myId, roomId, peer, domain]);
 
@@ -120,7 +119,7 @@ const usePlayer = (myId: string | undefined, roomId: any, peer: any) => {
                 return;
             }
 
-            const res = await fetch("https://comegle-web-nnkb.vercel.app/api/get-room", {
+            const res = await fetch("/api/get-room", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({id: poolId}),

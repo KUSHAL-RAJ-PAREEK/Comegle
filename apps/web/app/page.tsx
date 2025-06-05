@@ -43,7 +43,7 @@ export default function Home() {
                         return;
                     }
 
-                    const res = await fetch("https://comegle-web-nnkb.vercel.app/api/get-room", {
+                    const res = await fetch("/api/get-room", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ id: poolId }),

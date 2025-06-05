@@ -12,7 +12,7 @@ const pub = new Redis(process.env["REDIS"]);
 const sub = new Redis(process.env["REDIS"]);
 
 const dev = process.env.NODE_ENV !== "production";
-const hostname = "comegle-web-nnkb.vercel.app";
+const hostname = "10.10.103.62";
 const port = 8000;
 
 const app = next({ dev, hostname, port });
@@ -24,11 +24,9 @@ app.prepare().then(() => {
     // @ts-ignore
     if (!globalThis.io) {
         const io = new Server(httpServer,{
-            cors: {
-                origin: '*',
-                methods: ['GET', 'POST'],
-                allowedHeaders: ['*'],
-                credentials: false
+            cors:{
+                allowedHeaders:['*'],
+                origin: '*'
             }
         });
         // @ts-ignore
