@@ -15,7 +15,6 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
-  "globalEnv": ["IMPORTANT_GLOBAL_VARIABLE"],
   "tasks": {
     "build": {
       "env": ["RESEND_API_KEY",
