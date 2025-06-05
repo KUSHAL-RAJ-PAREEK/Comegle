@@ -20,7 +20,7 @@ export const SocketProvider = (props:any) => {
     const status = session.status
     useEffect(() => {
         if(status === 'authenticated'){
-            connection = io("http://localhost:8000", {
+            connection = io(    `${process.env.HOSTNAME}:8000`, {
                 transports: ["websocket"],
             });
 
