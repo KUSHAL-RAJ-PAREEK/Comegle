@@ -11,10 +11,10 @@ import {
     Text
 } from '@react-email/components'
 
-export default function MagicLinkEmail({ url, host }:{url : string,host :string}) {
+export default function MagicLinkEmail({url, host}: { url: string, host: string }) {
     return (
         <Html>
-            <Head />
+            <Head/>
             <Preview>Log in with this magic link</Preview>
             <Body style={main}>
                 <Container style={container}>
@@ -47,7 +47,7 @@ export default function MagicLinkEmail({ url, host }:{url : string,host :string}
                         <Link
                             href='https://github.com/KUSHAL-RAJ-PAREEK'
                             target='_blank'
-                            style={{ ...link, color: '#898989' }}
+                            style={{...link, color: '#898989'}}
                         >
                             KRP
                         </Link>

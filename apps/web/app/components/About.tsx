@@ -1,12 +1,9 @@
-import BackgroundVideo from "next-video/background-video";
-import phone_video from "../../videos/phone_rotato.mov.json";
-import VideoInCssIphoneFrame from "./VideoComponent";
 import IphoneVideoWrapper from "./IphoneWrapper";
 
 
-export default function(){
+export default function () {
 
-    return(
+    return (
         <section id="about">
             <div className="relative min-h-screen w-full items-center justify-center bg-[oklch(75%_0.183_55.934)] ">
                 <div className="absolute inset-0 bg-[url('/cat_background.svg')] bg-center  opacity-10 z-0"/>
@@ -73,7 +70,8 @@ export default function(){
                             </p>
 
                             <p className="group text-white font-semibold mt-4">
-                                Comegle brings your campus community to life — whether you're looking for laughs, deep convos, or just someone to talk to between classes.
+                                Comegle brings your campus community to life — whether you're looking for laughs, deep
+                                convos, or just someone to talk to between classes.
 
                                 <span
                                     className="transition-all duration-300 px-1 rounded group-hover:text-black group-hover:shadow-lg group-hover:px-2">
@@ -89,7 +87,7 @@ export default function(){
 
                         <div className="w-full md:w-1/2 lg:w-1/3 flex justify-center items-center">
 
-                        <IphoneVideoWrapper/>
+                            <IphoneVideoWrapper/>
                         </div>
 
                         <div className="w-full md:w-1/2 lg:w-1/3 text-center md:text-text-right text-justify px-10">
@@ -137,7 +135,8 @@ Comegle’s simple interface makes it easy
                             </p>
 
                             <p className="group text-white font-semibold mt-2">
-                                Comegle keeps things simple by matching you only with other verified students from your college or similar institutions.
+                                Comegle keeps things simple by matching you only with other verified students from your
+                                college or similar institutions.
 
                                 <span
                                     className="transition-all duration-300 px-1 rounded group-hover:text-black group-hover:shadow-lg group-hover:px-2">

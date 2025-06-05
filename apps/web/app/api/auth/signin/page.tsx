@@ -1,6 +1,6 @@
 "use client"
 
-import {signIn, signOut, useSession} from "next-auth/react";
+import {useSession} from "next-auth/react";
 import AuthBox from "./../../../components/AuthBox/AuthBox";
 import {useEffect} from "react";
 import {useRouter} from "next/navigation";
@@ -44,7 +44,7 @@ export default function Home() {
             <div>
                 <Navbar/>
             </div>
-          <About/>
+            <About/>
             <section id="developer">
                 <div>
                     <Footer/>

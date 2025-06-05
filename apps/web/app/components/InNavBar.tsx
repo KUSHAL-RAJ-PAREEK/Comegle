@@ -31,16 +31,17 @@ export default function () {
                         <div className="hidden md:block">
                             <div className="ml-4 flex items-center space-x-4">
                                 <a href="#video" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
-                                   Chat
+                                    Chat
                                 </a>
                                 <a href="#about" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
                                     About
                                 </a>
-                                <a href="#developer" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                                <a href="#developer"
+                                   className="text-white hover:bg-white hover:text-black rounded-lg p-2">
                                     Developer
                                 </a>
-                                <a onClick={async ()=> {
-                                    await signOut({ redirect: false });
+                                <a onClick={async () => {
+                                    await signOut({redirect: false});
                                     router.replace("/api/auth/signin")
                                 }} className="text-white hover:bg-white hover:text-black rounded-lg p-2">
                                     Logout
@@ -92,25 +93,28 @@ export default function () {
                 {isClick && (
                     <div>
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                            <a onClick={()=>{
+                            <a onClick={() => {
                                 setisClick(!isClick)
                             }}
-                               href="#video" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                               href="#video"
+                               className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
                                 Chat
                             </a>
-                            <a  onClick={()=>{
+                            <a onClick={() => {
                                 setisClick(!isClick)
                             }}
-                                href="#about" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                               href="#about"
+                               className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
                                 About
                             </a>
-                            <a onClick={()=>{
+                            <a onClick={() => {
                                 setisClick(!isClick)
-                            }} href="#developer" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                            }} href="#developer"
+                               className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
                                 Developer
                             </a>
-                            <a onClick={async ()=> {
-                                await signOut({ redirect: false });
+                            <a onClick={async () => {
+                                await signOut({redirect: false});
                                 router.replace("/api/auth/signin")
                             }} className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
                                 Developer

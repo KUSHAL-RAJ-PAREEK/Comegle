@@ -1,7 +1,4 @@
-
-import { useSocketStore } from "../../../store/useSocketStore";
-
-export default function (socket:any,msg: string, roomId: string | undefined, userId: string) {
+export default function (socket: any, msg: string, roomId: string | undefined, userId: string) {
 
     if (socket) {
         socket.emit("message", {

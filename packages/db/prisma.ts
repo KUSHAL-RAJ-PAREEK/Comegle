@@ -1,5 +1,5 @@
 // @ts-ignore
-import { PrismaClient } from '../../packages/db/generated/prisma'
+import {PrismaClient} from '../../packages/db/generated/prisma'
 
 
 const prismaClientSingleton = () => {

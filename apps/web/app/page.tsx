@@ -1,11 +1,10 @@
 "use client"
 
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useAuthStore } from "../store/authStore";
+import {useSession} from "next-auth/react";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/navigation";
+import {useAuthStore} from "../store/authStore";
 import Loader from "./components/Loader";
-import db from "@repo/db/client";
 import {getPoolId} from "./lib/actions/getPoolId";
 import {useUserStore} from "../store/useUserState";
 
@@ -15,12 +14,13 @@ export default function Home() {
     const router = useRouter();
     const setAuthenticated = useAuthStore((state) => state.setAuthenticated);
 
-    const [roomId, setRoomId] = useState<string | null>(null);
-    const { setUser, clearUser } = useUserStore();
+    const [setRoomId] = useState<string | null>(null);
+    const {setUser} = useUserStore();
 
     const email = session.data?.user?.email || "";
     const domain = email.split("@")[1] || "";
-    console.log(domain)
+
+
     useEffect(() => {
         if (status === "unauthenticated") {
             router.replace("/api/auth/signin");
@@ -33,10 +33,11 @@ export default function Home() {
             const fetchRoom = async () => {
                 try {
 
-                    const poolId =  await getPoolId(domain)
+                    const poolId = await getPoolId(domain)
                     console.log(poolId)
+
                     // @ts-ignore
-                    setUser({name : session.data?.user?.name, email : session.data?.user?.email, poolId: poolId})
+                    setUser({name: session.data?.user?.name, email: session.data?.user?.email, poolId: poolId})
 
                     if (!poolId) {
                         console.error("No pool found for domain:", domain);
@@ -45,13 +46,16 @@ export default function Home() {
 
                     const res = await fetch("/api/get-room", {
                         method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ id: poolId }),
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify({id: poolId}),
                     });
 
                     const data = await res.json();
                     if (data.roomId) {
+
+                        // @ts-ignore
                         setRoomId(data.roomId);
+
                         console.log("Got roomId:", data.roomId);
 
                         router.push(`/${data.roomId}`);
@@ -73,5 +77,5 @@ export default function Home() {
         }
     }, []);
 
-    return <Loader />;
+    return <Loader/>;
 }

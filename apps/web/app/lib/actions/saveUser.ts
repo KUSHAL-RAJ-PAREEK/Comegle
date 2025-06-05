@@ -1,22 +1,21 @@
 "use server"
 
-// @ts-ignore
 import db from "@repo/db/client";
-import { v4 as uuidv4 } from "uuid";
+import {v4 as uuidv4} from "uuid";
 
 
-export async function saveUser(email : string, name:string,  token?: string | null,
+export async function saveUser(email: string, name: string, token?: string | null,
                                image?: string | null,
-                               status?: string | null){
+                               status?: string | null) {
 
     try {
         const existingUser = await db.user.findUnique({
-            where: { email },
+            where: {email},
         });
 
         if (existingUser) {
             const updatedUser = await db.user.update({
-                where: { email },
+                where: {email},
                 data: {
                     name,
                     image,
@@ -25,13 +24,13 @@ export async function saveUser(email : string, name:string,  token?: string | nu
                 },
             });
 
-            return { success: true, user: updatedUser };
+            return {success: true, user: updatedUser};
         }
 
         const domain = email.split("@")[1] as string;
 
         let pool = await db.pool.findUnique({
-            where: { domain },
+            where: {domain},
         });
 
         if (!pool) {
@@ -56,10 +55,10 @@ export async function saveUser(email : string, name:string,  token?: string | nu
             },
         });
 
-        return { success: true, user: newUser };
+        return {success: true, user: newUser};
 
-    }catch (error:any){
-        console.log("Error saving user "+ error);
-        return {success : false,error : error.message}
+    } catch (error: any) {
+        console.log("Error saving user " + error);
+        return {success: false, error: error.message}
     }
 }

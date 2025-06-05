@@ -1,13 +1,13 @@
 "use client"
 import Image from "next/image";
 import {useState} from "react";
-import {signIn, signOut, useSession} from "next-auth/react";
+import {signIn} from "next-auth/react";
 
-export default function(){
+export default function () {
 
     const [loading, setLoading] = useState(false);
 
-    const handleClick = async() => {
+    const handleClick = async () => {
         setLoading(true);
         await signIn('google')
         setTimeout(() => {
@@ -15,8 +15,8 @@ export default function(){
         }, 4000);
     };
 
-    return  <div className="relative h-screen w-screen items-center justify-center bg-white">
-        <div className="absolute inset-0 bg-[url('/pattern-5.svg')] bg-cover bg-center opacity-5 z-0" />
+    return <div className="relative h-screen w-screen items-center justify-center bg-white">
+        <div className="absolute inset-0 bg-[url('/pattern-5.svg')] bg-cover bg-center opacity-5 z-0"/>
         <div className="absolute inset-0 flex justify-center items-center">
             <div className="relative z-10 flex flex-col items-center justify-center">
                 <p className="text-xl sm:text-xl md:text-2xl font-bold text-orange-400 text-center">
@@ -94,7 +94,8 @@ export default function(){
                 </div>
 
                 <p className="tracking-tighter text-gray-600 md:text-sm text-center mt-6">
-                    <a href="#" className="font-semibold text-gray-900 underline decoration-indigo-500">No terms & conditions</a>
+                    <a href="#" className="font-semibold text-gray-900 underline decoration-indigo-500">No terms &
+                        conditions</a>
                     , just college chaos. <br/> You’re old enough for this.
                 </p>
 
@@ -103,7 +104,6 @@ export default function(){
                 </p>
 
             </div>
-
 
         </div>
     </div>

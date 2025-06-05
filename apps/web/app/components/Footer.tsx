@@ -1,7 +1,8 @@
 "use client";
-// @ts-ignore
+
+
 import RainbowCursor from "../../hooks/useRainbow";
-import { useRef, useEffect, useState } from "react";
+import {useRef, useEffect, useState} from "react";
 import {FaGithub, FaLinkedin} from "react-icons/fa";
 
 export default function Footer() {
@@ -14,7 +15,7 @@ export default function Footer() {
             setIsReady(true);
         }
     }, []);
-    // console.log(isReady)
+
     return (
         <div
             className="relative h-full w-full bg-gray-900 text-white"
@@ -52,7 +53,7 @@ export default function Footer() {
                         rel="noopener noreferrer"
                         className="text-3xl text-white hover:text-blue-500 transition-colors"
                     >
-                        <FaLinkedin />
+                        <FaLinkedin/>
                     </a>
                     <a
                         href="https://github.com/KUSHAL-RAJ-PAREEK"
@@ -60,15 +61,13 @@ export default function Footer() {
                         rel="noopener noreferrer"
                         className="text-3xl text-white hover:text-gray-400 transition-colors"
                     >
-                        <FaGithub />
+                        <FaGithub/>
                     </a>
                 </div>
                 <p className="text-center text-sm text-gray-500 my-5">
                     Made with <span className="text-red-500">❤️</span> in Jaipur
                 </p>
             </div>
-
-
         </div>
     );
 }

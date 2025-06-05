@@ -52,6 +52,7 @@ const usePlayer = (myId: string | undefined, roomId: any, peer: any) => {
             }
             return filteredPlayers;
         });
+
        clearMessages()
         await fetchRoom(domain);
         await deleteRoom(domain,roomId)

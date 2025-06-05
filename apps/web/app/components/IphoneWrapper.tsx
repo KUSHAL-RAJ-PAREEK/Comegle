@@ -5,13 +5,13 @@ import {Asset} from "next-video/dist/assets";
 
 export default function IphoneVideoWrapper() {
     return (
-        <div style={{ position: 'relative', width: '360px', height: '800px' }}>
+        <div style={{position: 'relative', width: '360px', height: '800px'}}>
             <div
                 style={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
-                    marginTop:40,
+                    marginTop: 40,
                     width: '100%',
                     height: '700px',
                     overflow: 'hidden',
@@ -34,7 +34,7 @@ export default function IphoneVideoWrapper() {
                 />
             </div>
 
-            <div className="iphone-x" style={{ height: "700px",zIndex: 2, position: 'relative' }}>
+            <div className="iphone-x" style={{height: "700px", zIndex: 2, position: 'relative'}}>
                 <i></i>
                 <b></b>
                 <s></s>

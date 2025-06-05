@@ -8,9 +8,9 @@ const Player = (props: any) => {
                          muted={muted}
                          playing={playing}
                          width="100%"
-                         height= "100%"
+                         height="100%"
                          style={
-                             {transform: 'scaleX(-1)' }}/>
+                             {transform: 'scaleX(-1)'}}/>
         </div>
     )
 }

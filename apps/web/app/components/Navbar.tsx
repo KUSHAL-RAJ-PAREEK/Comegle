@@ -34,7 +34,8 @@ export default function () {
                                 <a href="#about" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
                                     About
                                 </a>
-                                <a href="#developer" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                                <a href="#developer"
+                                   className="text-white hover:bg-white hover:text-black rounded-lg p-2">
                                     Developer
                                 </a>
                             </div>
@@ -84,21 +85,24 @@ export default function () {
                 {isClick && (
                     <div>
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                            <a onClick={()=>{
+                            <a onClick={() => {
                                 setisClick(!isClick)
                             }}
-                               href="#signin" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                               href="#signin"
+                               className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
                                 Signin
                             </a>
-                            <a  onClick={()=>{
+                            <a onClick={() => {
                                 setisClick(!isClick)
                             }}
-                                href="#about" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                               href="#about"
+                               className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
                                 About
                             </a>
-                            <a onClick={()=>{
+                            <a onClick={() => {
                                 setisClick(!isClick)
-                            }} href="#developer" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                            }} href="#developer"
+                               className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
                                 Developer
                             </a>
                         </div>

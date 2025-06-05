@@ -4,8 +4,6 @@ import {JWT} from "next-auth/jwt";
 import {User} from "next-auth";
 import {Session} from "node:inspector";
 
-
-// @ts-ignore
 export const authOptions = {
 
     providers: [
@@ -19,18 +17,18 @@ export const authOptions = {
             user: {
                 email: string;
                 name: string;
-                image:string;
-                status:string
+                image: string;
+                status: string
             },
             account: {
                 provider: "google" | "resend"
             }
         }) {
-            await  saveUser(user.email,user.name||"kushal",null,user.image,user.status)
+            await saveUser(user.email, user.name || "kushal", null, user.image, user.status)
             console.log("✅ signIn callback triggered:", user.email);
             return true;
         },
-        async jwt({ token, user, trigger, session }:{
+        async jwt({token, user, trigger, session}: {
             token: JWT;
             user?: User;
             trigger?: 'signIn';
@@ -41,16 +39,16 @@ export const authOptions = {
 
             return token
         },
-        async session({ session, token }:{
-            session : Session,
-            token : JWT
+        async session({session, token}: {
+            session: Session,
+            token: JWT
         }) {
             console.log(session)
             return session
         }
 
     },
-    pages:{
+    pages: {
         signIn: "/auth/signin",
     },
     // adapter: PrismaAdapter(db),

@@ -4,26 +4,20 @@ import usePeer from "../../hooks/usePeer";
 import useMediaStream from "../../hooks/useMediaStream";
 
 import Player from "../components/Player/index"
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import usePlayer from "../../hooks/usePlayer";
-import {useParams, useRouter} from "next/navigation";
+import {useParams} from "next/navigation";
 import {cloneDeep} from "lodash";
 import {useUsersStore} from "../../store/useUsersStore";
-import {useSession} from "next-auth/react";
-import {useAuthStore} from "../../store/authStore";
-import {useUserStore} from "../../store/useUserState";
-import Navbar from "../components/Navbar";
 import About from "../components/About";
 import Footer from "../components/Footer";
 import InNavBar from "../components/InNavBar";
-import RainbowCursor from "../../hooks/useRainbow";
 import {FaGithub, FaLinkedin} from "react-icons/fa";
 import {useFullScreenStore} from "../../store/useFullScreenStore";
 import BackgroundVideo from "next-video/background-video";
 import noise from "../../videos/noise_2.mp4.json";
 // @ts-ignore
 import {Asset} from "next-video/dist/assets";
-import NextVideo from "next-video";
 import {useMessageStore} from "../../store/useMessageStore";
 import sendMessage from "../lib/actions/sendMessage";
 
@@ -33,11 +27,10 @@ const Room = () => {
     const {uId, peer, myId} = usePeer();
     const {stream} = useMediaStream();
     const {roomId} = useParams();
-    console.log("askjlnfajsnkanaksfnklasfnklsanfklsmaf    ", roomId)
+
     const isFullScreen = useFullScreenStore(state => state.isFullScreen);
     const setFullScreen = useFullScreenStore(state => state.setFullScreen);
     const messages = useMessageStore((state) => state.messages);
-
 
 
     const {
@@ -53,9 +46,9 @@ const Room = () => {
     const users = useUsersStore((state) => state.users);
     const setUser = useUsersStore((state) => state.setUser);
     const removeUser = useUsersStore((state) => state.removeUser);
-    const [typedMsg,SetTypedMsg] = useState('');
+    const [typedMsg, SetTypedMsg] = useState('');
 
-    console.log("i ama rendering again and again")
+
     useEffect(() => {
         if (!socket || !peer || !stream) return;
         const handleUserConnected = (newUser: string) => {
@@ -73,11 +66,13 @@ const Room = () => {
                         playing: true
                     }
                 }))
+
                 // @ts-ignore
-                setUser((prev) => ({
+                setUser((prev: any) => ({
                     ...prev,
                     [newUser]: call
                 }))
+
             })
         }
         socket.on("user-connected", handleUserConnected)
@@ -86,7 +81,6 @@ const Room = () => {
             socket.off("user-connected", handleUserConnected)
         }
     }, [peer, socket, stream]);
-
 
 
     useEffect(() => {
@@ -105,11 +99,11 @@ const Room = () => {
 
         const handleUserLeave = (userId: any) => {
             console.log(`user ${userId} leaving the room`)
-            // @ts-ignore
+
             users[userId]?.close()
             const playerCopy = cloneDeep(players);
             delete playerCopy[userId]
-            // @ts-ignore
+
             setPlayers((prev) => {
                 const playerCopy = {...prev};
                 delete playerCopy[userId];
@@ -190,12 +184,7 @@ const Room = () => {
         }
     };
 
-    // console.log("nonHighlightedPlayers is empty",Object.keys(nonHighlightedPlayers).length);
 
-
-    // @ts-ignore
-    // @ts-ignore
-    // @ts-ignore
     return (
         <>
             <div className="absolute inset-0 bg-[url('/unicorn_bg.svg')] bg-gray-100 bg-center opacity-10 z-0"/>
@@ -206,24 +195,48 @@ const Room = () => {
                     isFullScreen ? (
                         <>
                             <div className="flex flex-col
-                 md:flex-row h-auto min-h-[74.5vh] w-[100vw] mx-auto mt-1 rounded-2xl overflow-hidden bg-white">
+                 md:flex-row h-auto  w-[100vw] mx-auto mt-1 rounded-2xl overflow-hidden bg-white">
                                 <div className="w-full md:w-1/2 h-auto  bg-gray-200">
-                                    {nonHighlightedPlayers &&
-                                        Object.keys(nonHighlightedPlayers).map((playerId: any) => {
-                                            // @ts-ignore
-                                            const {url, muted, playing} = nonHighlightedPlayers[playerId];
-                                            if (playerHighlighted && url !== playerHighlighted?.url) {
-                                                return (
-                                                    <Player
-                                                        key={playerId}
-                                                        url={url}
-                                                        muted={muted}
-                                                        playing={playing}
-                                                        isActive={false}
+                                    {(() => {
+                                        const filteredPlayers = Object.keys(nonHighlightedPlayers).filter(playerId => {
+
+                                            const url = nonHighlightedPlayers[playerId]?.url;
+
+                                            return playerHighlighted && url !== playerHighlighted?.url;
+                                        });
+
+                                        if (filteredPlayers.length === 0) {
+                                            return <div className="w-full h-full">
+                                                <div className="relative w-full h-full rounded-l-2xl overflow-hidden">
+                                                    <BackgroundVideo
+                                                        disableTracking
+                                                        maxResolution="720p"
+                                                        className="absolute top-0 left-0 w-full h-full object-cover scale-[2.5]"
+                                                        controls={false}
+                                                        src={noise as Asset}
+                                                        autoPlay
                                                     />
-                                                );
-                                            }
-                                        })}
+                                                </div>
+                                            </div>
+                                        }
+
+                                        return filteredPlayers.map(playerId => {
+
+                                            const player = nonHighlightedPlayers[playerId];
+                                            if (!player) return null;
+                                            const { url, muted, playing } = player;
+
+                                            return (
+                                                <Player
+                                                    key={playerId}
+                                                    url={url}
+                                                    muted={muted}
+                                                    playing={playing}
+                                                    isActive={false}
+                                                />
+                                            );
+                                        });
+                                    })()}
                                 </div>
 
                                 <div className="w-full md:w-1/2 h-auto bg-gray-200">
@@ -258,13 +271,13 @@ const Room = () => {
 
                             <div className="flex flex-row justify-between items-start w-full mt-2">
 
-                            <div
-                                className="w-full gap-2 flex items-center justify-center mt-2 md:flex-row md:justify-start mx-25 md:mx-20">
-                                <div onClick={
-                                    () => leaveRoom()
-                                }
-                                     className='w-50 h-45'>
-                                    <div className='button w-40 h-35 bg-green-400 rounded-lg cursor-pointer select-none
+                                <div
+                                    className="w-full gap-2 flex items-center justify-center mt-2 md:flex-row md:justify-start mx-25 md:mx-20">
+                                    <div onClick={
+                                        () => leaveRoom()
+                                    }
+                                         className='w-50 h-45'>
+                                        <div className='button w-40 h-35 bg-green-400 rounded-lg cursor-pointer select-none
   active:translate-y-2 active:[box-shadow:0_0px_0_0_#22c55e,0_0px_0_0_#22c55e41]
   active:border-b-[0px]
   transition-all duration-150 [box-shadow:0_10px_0_0_#22c55e,0_15px_0_0_#22c55e41]
@@ -273,15 +286,15 @@ const Room = () => {
 
                         <span
                             className='flex flex-col justify-center items-center h-full text-white font-bold text-lg '>Next</span>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div onClick={
-                                    () => {
-                                        return stopRoom()
-                                    }
-                                } className='  w-50 h-45'>
-                                    <div className='button w-40 h-35 bg-red-300 rounded-lg cursor-pointer select-none
+                                    <div onClick={
+                                        () => {
+                                            return stopRoom()
+                                        }
+                                    } className='  w-50 h-45'>
+                                        <div className='button w-40 h-35 bg-red-300 rounded-lg cursor-pointer select-none
   active:translate-y-2 active:[box-shadow:0_0px_0_0_#fca5a5,0_0px_0_0_#fecaca]
   active:border-b-[0px]
   transition-all duration-150 [box-shadow:0_10px_0_0_#fca5a5,0_15px_0_0_#fecaca]
@@ -289,12 +302,12 @@ const Room = () => {
 '>
                         <span
                             className='flex flex-col justify-center items-center h-full text-white font-bold text-lg '>Stop</span>
+                                        </div>
+
                                     </div>
 
-                                </div>
-
-                                <div onClick={toggleFullScreen} className=' w-50 h-45'>
-                                    <div className='hidden md:block button w-40 h-35 bg-blue-500 rounded-lg cursor-pointer select-none
+                                    <div onClick={toggleFullScreen} className=' w-50 h-45'>
+                                        <div className='hidden md:block button w-40 h-35 bg-blue-500 rounded-lg cursor-pointer select-none
     active:translate-y-2  active:[box-shadow:0_0px_0_0_#1b6ff8,0_0px_0_0_#1b70f841]
     active:border-b-[0px]
     transition-all duration-150 [box-shadow:0_10px_0_0_#1b6ff8,0_15px_0_0_#1b70f841]
@@ -304,53 +317,54 @@ const Room = () => {
                             className='flex flex-col justify-center items-center h-full text-white font-bold text-lg '>{
                             isFullScreen ? 'Exit' : 'Full Screen'
                         }</span>
+                                        </div>
+
                                     </div>
+                                    <div
+                                        className="hidden md:flex relative h-40 w-full rounded-2xl bg-gray-100 overflow-hidden mb-6 items-center flex flex-col">
 
-                                </div>
-                                <div className="hidden md:flex relative h-40 w-full rounded-2xl bg-gray-100 overflow-hidden mb-6 items-center flex flex-col">
-
-                                    <div className="flex-1 overflow-y-auto p-3 pr-2 w-full">
-                                        {messages.map(({ userId, msg }, index) => (
-                                            <div
-                                                key={index}
-                                                className={`mb-2 flex ${userId === myId ? "justify-end" : "justify-start"}`}
-                                            >
-                                                <p
-                                                    className={`px-4 py-2 rounded-lg max-w-xs break-words ${
-                                                        userId === myId ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800"
-                                                    }`}
+                                        <div className="flex-1 overflow-y-auto p-3 pr-2 w-full">
+                                            {messages.map(({userId, msg}, index) => (
+                                                <div
+                                                    key={index}
+                                                    className={`mb-2 flex ${userId === myId ? "justify-end" : "justify-start"}`}
                                                 >
-                                                    {msg}
-                                                </p>
-                                            </div>
-                                        ))}
-                                    </div>
+                                                    <p
+                                                        className={`px-4 py-2 rounded-lg max-w-xs break-words ${
+                                                            userId === myId ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800"
+                                                        }`}
+                                                    >
+                                                        {msg}
+                                                    </p>
+                                                </div>
+                                            ))}
+                                        </div>
 
-                                    <form
-                                        onSubmit={(e) => {
-                                            e.preventDefault();
-                                            // @ts-ignore
-                                            sendMessage(socket, typedMsg, roomId, myId);
-                                            SetTypedMsg('')
-                                        }}
-                                        className="flex gap-2 p-3  border-gray-300 w-full"
-                                    >
-                                        <input
-                                            value={typedMsg}
-                                            onChange={(e) => SetTypedMsg(e.target.value)}
-                                            type="text"
-                                            placeholder="Type your message..."
-                                            className="flex-1 bg-white px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        />
-                                        <button
-                                            type="submit"
-                                            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+                                        <form
+                                            onSubmit={(e) => {
+                                                e.preventDefault();
+                                                // @ts-ignore
+                                                sendMessage(socket, typedMsg, roomId, myId);
+                                                SetTypedMsg('')
+                                            }}
+                                            className="flex gap-2 p-3  border-gray-300 w-full"
                                         >
-                                            Send
-                                        </button>
-                                    </form>
+                                            <input
+                                                value={typedMsg}
+                                                onChange={(e) => SetTypedMsg(e.target.value)}
+                                                type="text"
+                                                placeholder="Type your message..."
+                                                className="flex-1 bg-white px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            />
+                                            <button
+                                                type="submit"
+                                                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+                                            >
+                                                Send
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                             <div
                                 className="relative h-full w-full bg-gray-900 text-white">
@@ -389,8 +403,9 @@ const Room = () => {
                                 <div className="w-full md:w-1/2 h-auto  bg-gray-200">
                                     {(() => {
                                         const filteredPlayers = Object.keys(nonHighlightedPlayers).filter(playerId => {
-                                            // @ts-ignore
-                                            const {url} = nonHighlightedPlayers[playerId];
+
+                                            const url = nonHighlightedPlayers[playerId]?.url;
+
                                             return playerHighlighted && url !== playerHighlighted?.url;
                                         });
 
@@ -410,8 +425,11 @@ const Room = () => {
                                         }
 
                                         return filteredPlayers.map(playerId => {
-                                            // @ts-ignore
-                                            const {url, muted, playing} = nonHighlightedPlayers[playerId];
+
+                                            const player = nonHighlightedPlayers[playerId];
+                                            if (!player) return null;
+
+                                            const { url, muted, playing } = player;
                                             return (
                                                 <Player
                                                     key={playerId}
@@ -488,10 +506,11 @@ const Room = () => {
                                         </div>
 
                                     </div>
-                                    <div className="hidden md:flex relative h-40 w-full rounded-2xl bg-gray-100 overflow-hidden mb-6 items-center flex flex-col">
+                                    <div
+                                        className="hidden md:flex relative h-40 w-full rounded-2xl bg-gray-100 overflow-hidden mb-6 items-center flex flex-col">
 
                                         <div className="flex-1 overflow-y-auto p-3 pr-2 w-full">
-                                            {messages.map(({ userId, msg }, index) => (
+                                            {messages.map(({userId, msg}, index) => (
                                                 <div
                                                     key={index}
                                                     className={`mb-2 flex ${userId === myId ? "justify-end" : "justify-start"}`}

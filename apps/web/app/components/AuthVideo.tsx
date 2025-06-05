@@ -1,11 +1,9 @@
-import NextVideo from "next-video";
 import auth_girl from './../../videos/fb_smile_girl.mp4.json'
 import BackgroundVideo from 'next-video/background-video';
 // @ts-ignore
 import {Asset} from "next-video/dist/assets";
 
-// eslint-disable-next-line react/display-name
-export default function() {
+export default function () {
 
     return <div className="overflow-auto">
 
