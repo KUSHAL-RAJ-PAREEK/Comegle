@@ -9,25 +9,18 @@
     },
     "web#build": {
       "dependsOn": ["^build"],
-      "env": ["SOME_OTHER_ENV_VAR"],
+      "env": ["RESEND_API_KEY",
+        "GOOGLE_CLIENT_ID",
+        "GOOGLE_CLIENT_SECRET",
+        "NEXTAUTH_SECRET",
+        "DATABASE_URL",
+        "MUX_TOKEN_ID",
+        "MUX_TOKEN_SECRET",
+        "REDIS"],
       "outputs": [".next/**", "!.next/cache/**"]
   },
     "lint": {
       "dependsOn": ["^lint"]
-    },
-    "pipeline": {
-      "build": {
-        "env": [
-          "RESEND_API_KEY",
-          "GOOGLE_CLIENT_ID",
-          "GOOGLE_CLIENT_SECRET",
-          "NEXTAUTH_SECRET",
-          "DATABASE_URL",
-          "MUX_TOKEN_ID",
-          "MUX_TOKEN_SECRET",
-          "REDIS"
-        ]
-      }
     },
     "check-types": {
       "dependsOn": ["^check-types"]
