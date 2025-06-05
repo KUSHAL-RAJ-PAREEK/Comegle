@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate": "prisma generate",
-    "migrate": "dotenv -e .env.local npx prisma migrate dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "scripts": {
+      "db:generate": "prisma generate",
+      "db:migrate": "prisma migrate dev --skip-generate",
+      "db:deploy": "prisma migrate deploy"
+    }
   },
   "exports": {
     "./client": "./prisma.ts"
