@@ -5,13 +5,14 @@ import {Providers} from "../providers";
 
 
 const geistSans = localFont({
-    src: "/logo.png",
+    src: "./fonts/GeistVF.woff",
     variable: "--font-geist-sans",
 });
 const geistMono = localFont({
-    src: "/logo.png",
+    src: "./fonts/GeistMonoVF.woff",
     variable: "--font-geist-mono",
 });
+
 
 export const metadata: Metadata = {
     title: "Comegle",
