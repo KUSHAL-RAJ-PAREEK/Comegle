@@ -15,6 +15,9 @@ export async function POST(req: Request) {
     const roomIds = await redis.smembers(roomSetKey);
 
     for (const roomId of roomIds) {
+        const ownerId = await redis.get(`roomOwner:${roomId}`);
+        if (ownerId === roomId) continue;
+
         const sizeKey = `roomSize:${roomId}`;
         const sizeRaw = await redis.get(sizeKey);
         const size = parseInt(sizeRaw || "0");
@@ -34,6 +37,7 @@ export async function POST(req: Request) {
         if (newSize === MAX_USERS_PER_ROOM) {
             await redis.srem(roomSetKey, roomId);
             await redis.del(`roomSize:${roomId}`);
+            await redis.del(`roomOwner:${roomId}`);
         }
 
         return NextResponse.json({ roomId, joined: true });
@@ -43,6 +47,7 @@ export async function POST(req: Request) {
     const sizeKey = `roomSize:${newRoomId}`;
     await redis.set(sizeKey, 1);
     await redis.sadd(roomSetKey, newRoomId);
+    await redis.set(`roomOwner:${newRoomId}`, poolId);
 
     return NextResponse.json({ roomId: newRoomId, joined: false });
 }

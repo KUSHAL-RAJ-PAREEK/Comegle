@@ -4,6 +4,7 @@
 import db from "@repo/db/client";
 import { v4 as uuidv4 } from "uuid";
 
+
 export async function saveUser(email : string, name:string,  token?: string | null,
                                image?: string | null,
                                status?: string | null){
@@ -56,7 +57,6 @@ export async function saveUser(email : string, name:string,  token?: string | nu
         });
 
         return { success: true, user: newUser };
-
 
     }catch (error:any){
         console.log("Error saving user "+ error);

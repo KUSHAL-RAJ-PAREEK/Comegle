@@ -7,6 +7,7 @@ import { useAuthStore } from "../store/authStore";
 import Loader from "./components/Loader";
 import db from "@repo/db/client";
 import {getPoolId} from "./lib/actions/getPoolId";
+import {useUserStore} from "../store/useUserState";
 
 export default function Home() {
     const session = useSession();
@@ -15,6 +16,7 @@ export default function Home() {
     const setAuthenticated = useAuthStore((state) => state.setAuthenticated);
 
     const [roomId, setRoomId] = useState<string | null>(null);
+    const { setUser, clearUser } = useUserStore();
 
     const email = session.data?.user?.email || "";
     const domain = email.split("@")[1] || "";
@@ -32,6 +34,10 @@ export default function Home() {
                 try {
 
                     const poolId =  await getPoolId(domain)
+                    console.log(poolId)
+                    // @ts-ignore
+                    setUser({name : session.data?.user?.name, email : session.data?.user?.email, poolId: poolId})
+
                     if (!poolId) {
                         console.error("No pool found for domain:", domain);
                         return;

@@ -9,6 +9,7 @@ const usePeer = () =>{
 
     const { setPeer } = usePeerStore();
     const { setMyId } = usePeerIdStore();
+    const [uId,setUid] = useState('');
     const isPeerSet = useRef(false);
     const socket = useSocketStore((state) => state.socket);
 // @ts-ignore
@@ -24,6 +25,7 @@ const usePeer = () =>{
             myPeer.on('open',(id) =>{
                 console.log(`your peer id is ${id}`)
                 setMyId(id)
+                setUid(id)
                 // console.log("ROOMI"+ roomId)
                 socket?.emit('join-room',roomId,id)
             })
@@ -31,6 +33,7 @@ const usePeer = () =>{
     },[roomId,socket])
 
     return {
+        uId,
         ...usePeerStore(),
         ...usePeerIdStore(),
     }

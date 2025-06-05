@@ -34,8 +34,7 @@ export default function Home() {
     return (
         <div>
             <div
-                className="absolute top-0 left-0 w-full h-screen bg-[url('/unicorn_bg.svg')] bg-center z-0 opacity-35 filter brightness-10"
-            ></div>
+                className="absolute top-0 left-0 w-full h-screen bg-[url('/unicorn_bg.svg')] bg-center z-0 opacity-35 filter brightness-10"/>
             <div className="flex justify-center items-center min-h-screen w-full">
                 <section id="signin">
                     <AuthBox/>
