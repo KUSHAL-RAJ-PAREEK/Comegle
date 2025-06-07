@@ -64,6 +64,6 @@
 
 ---
 ## 📢 LinkedIn Post
-👉 [LinkedIn Post][(https://www.linkedin.com/posts/your-linkedin-post-ur](https://www.linkedin.com/posts/kushal-raj-pareek_omegle-nextjs-socket-activity-7336564994349621248-pXQx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6K2CsB7HDNhcXdMy9UAPAAleQv9nt2A8k)
 
-Thank you.
+👉 [LinkedIn Post](https://www.linkedin.com/posts/kushal-raj-pareek_omegle-nextjs-socket-activity-7336564994349621248-pXQx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6K2CsB7HDNhcXdMy9UAPAAleQv9nt2A8k)
+
