@@ -52,15 +52,6 @@
 
 ---
 
-## 📁 Project Structure
-
-```bash
-/apps
-  ├── web         # Next.js frontend app
-  |-              # server.ts socket
-  └── api         # API routes
-/packages
-  └── db          # Prisma schema, database access
 
 ---
 ## 📢 LinkedIn Post
