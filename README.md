@@ -51,6 +51,15 @@
    - **Socket.IO** handles signaling, events (join, next, stop), and chat messages.
 
 ---
+## 📁 Project Structure
+
+```bash
+/apps
+  ├── web         # Next.js frontend app
+  |-              # server.ts socket
+  └── api         # API routes
+/packages
+  └── db          # Prisma schema, database access
 
 
 ---
