@@ -4,6 +4,12 @@
 
 ---
 
+## 🎥 Demo Video
+📽️ Check out the app in action:
+
+https://github.com/user-attachments/assets/8fda2c65-1ee0-43ac-ba21-7e92351041d2
+
+
 ## ✨ Features
 
 - 🎥 **Video Chat** – Peer-to-peer one-on-one video communication  
