@@ -1,8 +1,14 @@
-# 🎓 Comegle — College-Based Omegle
+# 📺 Comegle — College-Based Omegle
 
-**Comegle** is a real-time, college-exclusive video chat platform inspired by Omegle. It connects students from the **same college** (verified by email domain) for spontaneous and anonymous one-on-one video chats.
+**Comegle** is a real-time, college-exclusive video chat platform inspired by Omegle. It connects students from the **same college** (verified by college email domain) for spontaneous and anonymous one-on-one video chats.
 
 ---
+
+## 🎥 Demo Video
+📽️ Check out the app in action:
+
+https://github.com/user-attachments/assets/8fda2c65-1ee0-43ac-ba21-7e92351041d2
+
 
 ## ✨ Features
 
@@ -51,19 +57,8 @@
    - **Socket.IO** handles signaling, events (join, next, stop), and chat messages.
 
 ---
-
-## 📁 Project Structure
-
-```bash
-/apps
-  ├── web         # Next.js frontend app
-  |-              # server.ts socket
-  └── api         # API routes
-/packages
-  └── db          # Prisma schema, database access
-
 ## 📢 LinkedIn Post
 
-👉 [LinkedIn Post][(https://www.linkedin.com/posts/your-linkedin-post-ur](https://www.linkedin.com/posts/kushal-raj-pareek_omegle-nextjs-socket-activity-7336564994349621248-pXQx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6K2CsB7HDNhcXdMy9UAPAAleQv9nt2A8k)
+👉 [LinkedIn Post](https://www.linkedin.com/posts/kushal-raj-pareek_omegle-nextjs-socket-activity-7336564994349621248-pXQx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6K2CsB7HDNhcXdMy9UAPAAleQv9nt2A8k)
 
 Thank you.
