@@ -25,7 +25,7 @@ export const authOptions = {
             }
         }) {
             await saveUser(user.email, user.name || "kushal", null, user.image, user.status)
-            console.log("✅ signIn callback triggered:", user.email);
+        
             return true;
         },
         async jwt({token, user, trigger, session}: {
