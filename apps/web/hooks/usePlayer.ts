@@ -89,8 +89,8 @@ const usePlayer = (myId: string | undefined, roomId: any, peer: any) => {
         };
     }, [socket, addMessage]);
 
-    console.log("🔵 Highlighted Player:", playerHighlighted);
-    console.log("🟢 Non-Highlighted Players:", playersCopy);
+    console.log("Highlighted Player:", playerHighlighted);
+    console.log("Non-Highlighted Players:", playersCopy);
 
 
     useEffect(() => {
